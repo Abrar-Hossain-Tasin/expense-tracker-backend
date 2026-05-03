@@ -1,6 +1,5 @@
 package com.poshhouse.backend.service;
 
-import com.poshhouse.backend.dto.expense.BulkDeleteExpenseRequest;
 import com.poshhouse.backend.dto.expense.ExpenseRequest;
 import com.poshhouse.backend.dto.expense.ExpenseResponse;
 import com.poshhouse.backend.dto.expense.ExpenseSplitRequest;
@@ -13,7 +12,6 @@ import com.poshhouse.backend.exception.BadRequestException;
 import com.poshhouse.backend.exception.ResourceNotFoundException;
 import com.poshhouse.backend.repository.HouseExpenseRepository;
 import com.poshhouse.backend.repository.UserRepository;
-import com.poshhouse.backend.security.UserPrincipal;
 import com.poshhouse.backend.util.MonthWindow;
 import com.poshhouse.backend.util.MoneyUtils;
 import com.poshhouse.backend.util.SplitCalculator;
@@ -47,10 +45,7 @@ public class ExpenseService {
     }
 
     @Transactional
-    public ExpenseResponse createExpense(ExpenseRequest request, UserPrincipal currentUser) {
-        User creator = userRepository.findById(currentUser.getId())
-            .orElseThrow(() -> new ResourceNotFoundException("Creator not found."));
-
+    public ExpenseResponse createExpense(ExpenseRequest request, User creator) {
         List<User> splitUsers = resolveSplitUsers(request);
         HouseExpense expense = HouseExpense.builder()
             .title(request.title().trim())
@@ -66,9 +61,33 @@ public class ExpenseService {
         return toResponse(houseExpenseRepository.save(expense));
     }
 
+    @Transactional(readOnly = true)
+    public void validateExpenseRequest(ExpenseRequest request) {
+        List<User> splitUsers = resolveSplitUsers(request);
+        HouseExpense preview = HouseExpense.builder()
+            .title(request.title().trim())
+            .category(request.category().trim())
+            .totalAmount(MoneyUtils.scale(request.totalAmount()))
+            .expenseDate(request.expenseDate())
+            .splitType(request.splitType())
+            .recurring(Boolean.TRUE.equals(request.recurring()))
+            .build();
+
+        buildSplits(preview, request, splitUsers);
+    }
+
     @Transactional
-    public void bulkDelete(BulkDeleteExpenseRequest request) {
-        houseExpenseRepository.deleteAllById(request.expenseIds());
+    public void bulkDelete(List<Long> expenseIds) {
+        houseExpenseRepository.deleteAllById(expenseIds);
+    }
+
+    @Transactional(readOnly = true)
+    public List<HouseExpense> getExpenses(List<Long> expenseIds) {
+        List<HouseExpense> expenses = houseExpenseRepository.findAllById(expenseIds);
+        if (expenses.size() != expenseIds.size()) {
+            throw new ResourceNotFoundException("One or more expenses could not be found.");
+        }
+        return expenses;
     }
 
     public static ExpenseResponse toResponse(HouseExpense expense) {
@@ -95,15 +114,14 @@ public class ExpenseService {
     }
 
     private List<User> resolveSplitUsers(ExpenseRequest request) {
-        if (request.splitType() == SplitType.EQUAL && (request.splits() == null || request.splits().isEmpty())) {
-            List<User> activeUsers = userRepository.findAllByActiveOrderByUsernameAsc(true);
-            if (activeUsers.isEmpty()) {
-                throw new BadRequestException("No active users are available for an equal split.");
-            }
-            return activeUsers;
-        }
-
         if (request.splits() == null || request.splits().isEmpty()) {
+            if (request.splitType() == SplitType.EQUAL) {
+                List<User> activeUsers = userRepository.findAllByActiveOrderByUsernameAsc(true);
+                if (activeUsers.isEmpty()) {
+                    throw new BadRequestException("No active users are available for an equal split.");
+                }
+                return activeUsers;
+            }
             throw new BadRequestException("Split values are required for this split type.");
         }
 

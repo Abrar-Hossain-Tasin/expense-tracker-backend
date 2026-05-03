@@ -7,7 +7,6 @@ import com.poshhouse.backend.entity.User;
 import com.poshhouse.backend.exception.ResourceNotFoundException;
 import com.poshhouse.backend.repository.GroceryPurchaseRepository;
 import com.poshhouse.backend.repository.UserRepository;
-import com.poshhouse.backend.security.UserPrincipal;
 import com.poshhouse.backend.util.MonthWindow;
 import com.poshhouse.backend.util.MoneyUtils;
 import java.util.List;
@@ -32,8 +31,8 @@ public class GroceryService {
     }
 
     @Transactional
-    public GroceryPurchaseResponse createPurchase(GroceryPurchaseRequest request, UserPrincipal currentUser) {
-        Long payerId = request.payerId() != null ? request.payerId() : currentUser.getId();
+    public GroceryPurchaseResponse createPurchase(GroceryPurchaseRequest request, User requester) {
+        Long payerId = request.payerId() != null ? request.payerId() : requester.getId();
         User payer = userRepository.findById(payerId)
             .orElseThrow(() -> new ResourceNotFoundException("Payer not found."));
 
@@ -45,6 +44,26 @@ public class GroceryService {
             .build());
 
         return toResponse(purchase);
+    }
+
+    @Transactional(readOnly = true)
+    public GroceryPurchase getPurchase(Long purchaseId) {
+        return groceryPurchaseRepository.findById(purchaseId)
+            .orElseThrow(() -> new ResourceNotFoundException("Grocery purchase not found."));
+    }
+
+    @Transactional(readOnly = true)
+    public List<GroceryPurchase> getPurchases(List<Long> purchaseIds) {
+        List<GroceryPurchase> purchases = groceryPurchaseRepository.findAllById(purchaseIds);
+        if (purchases.size() != purchaseIds.size()) {
+            throw new ResourceNotFoundException("One or more grocery purchases could not be found.");
+        }
+        return purchases;
+    }
+
+    @Transactional
+    public void deletePurchases(List<Long> purchaseIds) {
+        groceryPurchaseRepository.deleteAllById(purchaseIds);
     }
 
     public static GroceryPurchaseResponse toResponse(GroceryPurchase purchase) {

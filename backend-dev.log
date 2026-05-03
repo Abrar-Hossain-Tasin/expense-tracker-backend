@@ -12,15 +12,13 @@
 [INFO] Copying 1 resource from src\main\resources to target\classes
 [INFO] 
 [INFO] --- compiler:3.11.0:compile (default-compile) @ backend ---
-[INFO] Changes detected - recompiling the module! :source
-[INFO] Compiling 60 source files with javac [debug release 17] to target\classes
+[INFO] Nothing to compile - all classes are up to date
 [INFO] 
 [INFO] --- resources:3.3.1:testResources (default-testResources) @ backend ---
 [INFO] Copying 1 resource from src\test\resources to target\test-classes
 [INFO] 
 [INFO] --- compiler:3.11.0:testCompile (default-testCompile) @ backend ---
-[INFO] Changes detected - recompiling the module! :dependency
-[INFO] Compiling 1 source file with javac [debug release 17] to target\test-classes
+[INFO] Nothing to compile - all classes are up to date
 [INFO] 
 [INFO] <<< spring-boot:3.2.5:run (default-cli) < test-compile @ backend <<<
 [INFO] 
@@ -36,31 +34,32 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::                (v3.2.5)
 
-2026-04-26T23:27:20.010+06:00  INFO 43808 --- [backend] [           main] c.poshhouse.backend.BackendApplication   : Starting BackendApplication using Java 17.0.11 with PID 43808 (C:\Users\abrar\Documents\New project\backend\target\classes started by abrar in C:\Users\abrar\Documents\New project\backend)
-2026-04-26T23:27:20.012+06:00  INFO 43808 --- [backend] [           main] c.poshhouse.backend.BackendApplication   : The following 1 profile is active: "local"
-2026-04-26T23:27:20.422+06:00  INFO 43808 --- [backend] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-04-26T23:27:20.470+06:00  INFO 43808 --- [backend] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 40 ms. Found 6 JPA repository interfaces.
-2026-04-26T23:27:20.833+06:00  INFO 43808 --- [backend] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2026-04-26T23:27:20.848+06:00  INFO 43808 --- [backend] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2026-04-26T23:27:20.848+06:00  INFO 43808 --- [backend] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.20]
-2026-04-26T23:27:20.883+06:00  INFO 43808 --- [backend] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2026-04-26T23:27:20.884+06:00  INFO 43808 --- [backend] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 847 ms
-2026-04-26T23:27:20.955+06:00  INFO 43808 --- [backend] [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2026-04-26T23:27:20.986+06:00  INFO 43808 --- [backend] [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
-2026-04-26T23:27:21.005+06:00  INFO 43808 --- [backend] [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2026-04-26T23:27:21.121+06:00  INFO 43808 --- [backend] [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2026-04-26T23:27:21.137+06:00  INFO 43808 --- [backend] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2026-04-26T23:27:21.246+06:00  INFO 43808 --- [backend] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:poshhouse user=SA
-2026-04-26T23:27:21.248+06:00  INFO 43808 --- [backend] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2026-04-26T23:27:21.264+06:00  WARN 43808 --- [backend] [           main] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2026-04-26T23:27:21.889+06:00  INFO 43808 --- [backend] [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2026-04-26T23:27:21.934+06:00  INFO 43808 --- [backend] [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2026-04-26T23:27:22.211+06:00  INFO 43808 --- [backend] [           main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
-2026-04-26T23:27:22.731+06:00  INFO 43808 --- [backend] [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@20307cb9, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@19a2b224, org.springframework.security.web.context.SecurityContextHolderFilter@37ddb835, org.springframework.security.web.header.HeaderWriterFilter@1e32a3ed, org.springframework.web.filter.CorsFilter@2251cc2e, org.springframework.security.web.authentication.logout.LogoutFilter@6b3bcab7, com.poshhouse.backend.security.JwtAuthenticationFilter@4a3404fa, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@67f8586f, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@63c6579, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@61563a91, org.springframework.security.web.session.SessionManagementFilter@2aef651, org.springframework.security.web.access.ExceptionTranslationFilter@6a73f164, org.springframework.security.web.access.intercept.AuthorizationFilter@18a421ea]
-2026-04-26T23:27:23.094+06:00  INFO 43808 --- [backend] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
-2026-04-26T23:27:23.106+06:00  INFO 43808 --- [backend] [           main] c.poshhouse.backend.BackendApplication   : Started BackendApplication in 3.316 seconds (process running for 3.522)
-2026-04-26T23:27:30.634+06:00  INFO 43808 --- [backend] [nio-8080-exec-3] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2026-04-26T23:27:30.637+06:00  INFO 43808 --- [backend] [nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2026-04-26T23:27:30.638+06:00  INFO 43808 --- [backend] [nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
-2026-04-27T08:23:51.799+06:00  WARN 43808 --- [backend] [l-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=8h16m29s879ms299µs700ns).
-2026-04-27T08:38:16.700+06:00  WARN 43808 --- [backend] [l-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=14m25s82ms991µs100ns).
+2026-05-03T22:31:05.629+06:00  INFO 19172 --- [backend] [           main] c.poshhouse.backend.BackendApplication   : Starting BackendApplication using Java 17.0.11 with PID 19172 (C:\Users\abrar\Documents\New project\backend\target\classes started by abrar in C:\Users\abrar\Documents\New project\backend)
+2026-05-03T22:31:05.632+06:00  INFO 19172 --- [backend] [           main] c.poshhouse.backend.BackendApplication   : The following 1 profile is active: "local"
+2026-05-03T22:31:06.189+06:00  INFO 19172 --- [backend] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-05-03T22:31:06.252+06:00  INFO 19172 --- [backend] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 57 ms. Found 7 JPA repository interfaces.
+2026-05-03T22:31:06.773+06:00  INFO 19172 --- [backend] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-05-03T22:31:06.785+06:00  INFO 19172 --- [backend] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-05-03T22:31:06.785+06:00  INFO 19172 --- [backend] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.20]
+2026-05-03T22:31:06.837+06:00  INFO 19172 --- [backend] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-05-03T22:31:06.839+06:00  INFO 19172 --- [backend] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1167 ms
+2026-05-03T22:31:06.937+06:00  INFO 19172 --- [backend] [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-05-03T22:31:06.980+06:00  INFO 19172 --- [backend] [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
+2026-05-03T22:31:07.006+06:00  INFO 19172 --- [backend] [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-05-03T22:31:07.172+06:00  INFO 19172 --- [backend] [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-05-03T22:31:07.192+06:00  INFO 19172 --- [backend] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-05-03T22:31:07.347+06:00  INFO 19172 --- [backend] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:poshhouse user=SA
+2026-05-03T22:31:07.349+06:00  INFO 19172 --- [backend] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-05-03T22:31:07.367+06:00  WARN 19172 --- [backend] [           main] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-05-03T22:31:08.104+06:00  INFO 19172 --- [backend] [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-05-03T22:31:08.158+06:00  INFO 19172 --- [backend] [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-05-03T22:31:08.484+06:00  INFO 19172 --- [backend] [           main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-05-03T22:31:09.015+06:00  INFO 19172 --- [backend] [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@3c2406dd, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@23e0ef68, org.springframework.security.web.context.SecurityContextHolderFilter@30130a31, org.springframework.security.web.header.HeaderWriterFilter@34272839, org.springframework.web.filter.CorsFilter@7207cb8b, org.springframework.security.web.authentication.logout.LogoutFilter@3a5922ec, com.poshhouse.backend.security.JwtAuthenticationFilter@3e0e3048, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7cb32ca5, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@76334a3a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@27449f65, org.springframework.security.web.session.SessionManagementFilter@27d9a016, org.springframework.security.web.access.ExceptionTranslationFilter@27e80cfa, org.springframework.security.web.access.intercept.AuthorizationFilter@7731504]
+2026-05-03T22:31:09.238+06:00  INFO 19172 --- [backend] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2026-05-03T22:31:09.245+06:00  INFO 19172 --- [backend] [           main] c.poshhouse.backend.BackendApplication   : Started BackendApplication in 3.927 seconds (process running for 4.226)
+2026-05-03T22:31:29.086+06:00  INFO 19172 --- [backend] [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-05-03T22:31:29.087+06:00  INFO 19172 --- [backend] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-05-03T22:31:29.088+06:00  INFO 19172 --- [backend] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2026-05-03T22:33:27.475+06:00  WARN 19172 --- [backend] [nio-8080-exec-3] o.a.p.p.font.FileSystemFontProvider      : 348 new fonts found, font cache will be re-built
+2026-05-03T22:33:27.475+06:00  WARN 19172 --- [backend] [nio-8080-exec-3] o.a.p.p.font.FileSystemFontProvider      : Building on-disk font cache, this may take a while
+2026-05-03T22:33:29.521+06:00  WARN 19172 --- [backend] [nio-8080-exec-3] o.a.p.p.font.FileSystemFontProvider      : Finished building on-disk font cache, found 371 fonts

@@ -1,8 +1,11 @@
 package com.poshhouse.backend.controller;
 
+import com.poshhouse.backend.dto.change.ChangeRequestResponse;
+import com.poshhouse.backend.dto.grocery.BulkDeleteGroceryRequest;
 import com.poshhouse.backend.dto.grocery.GroceryPurchaseRequest;
 import com.poshhouse.backend.dto.grocery.GroceryPurchaseResponse;
 import com.poshhouse.backend.security.UserPrincipal;
+import com.poshhouse.backend.service.ChangeRequestService;
 import com.poshhouse.backend.service.GroceryService;
 import jakarta.validation.Valid;
 import java.util.List;
@@ -21,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class GroceryController {
 
     private final GroceryService groceryService;
+    private final ChangeRequestService changeRequestService;
 
     @GetMapping
     public List<GroceryPurchaseResponse> listPurchases(@RequestParam(required = false) String month) {
@@ -28,10 +32,18 @@ public class GroceryController {
     }
 
     @PostMapping
-    public GroceryPurchaseResponse createPurchase(
+    public ChangeRequestResponse createPurchase(
         @Valid @RequestBody GroceryPurchaseRequest request,
         @AuthenticationPrincipal UserPrincipal principal
     ) {
-        return groceryService.createPurchase(request, principal);
+        return changeRequestService.submitGroceryCreateRequest(request, principal);
+    }
+
+    @PostMapping("/bulk-delete")
+    public ChangeRequestResponse requestBulkDelete(
+        @Valid @RequestBody BulkDeleteGroceryRequest request,
+        @AuthenticationPrincipal UserPrincipal principal
+    ) {
+        return changeRequestService.submitGroceryDeleteRequest(request, principal);
     }
 }
